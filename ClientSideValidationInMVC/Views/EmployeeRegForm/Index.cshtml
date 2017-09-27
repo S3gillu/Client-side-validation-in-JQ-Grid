@@ -1,0 +1,78 @@
+﻿@model ClientSideValidationInMVC.Models.Emp
+
+@{
+    ViewBag.Title = "Employee Registration Form";
+}
+
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+       rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" 
+      crossorigin="anonymous">
+@if (ViewData.ModelState.IsValid)
+{
+    if (@ViewBag.Name != null)
+    {
+        <b>
+            <span style="font-family: Verdana; font-size: 10pt;">
+                Name : @ViewBag.Name<br />
+                Email : @ViewBag.Email<br />
+                Address : @ViewBag.Address<br />
+                Age : @ViewBag.Age<br />
+
+            </span>
+        </b>
+    }
+}
+<br />
+<br />
+
+ 
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Employee</legend>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Age)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Age)
+            @Html.ValidationMessageFor(model => model.Age)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Email)
+            @Html.ValidationMessageFor(model => model.Email)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.PasswordFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Address)
+            @Html.ValidationMessageFor(model => model.Address)
+        </div>
+        <br />
+
+        <p>
+            <input type="submit" value="Register" />
+            <input type="reset" value="reset" />
+        </p>
+    </fieldset>
+}
+ 
